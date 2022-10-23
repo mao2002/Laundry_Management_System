@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.washing.dao.GuanLiYuanDao">
+    <insert id="insert_guanliyuan">
+        INSERT
+        IGNORE INTO guanliyuan(name,pw)
+        VALUES(
+        #{name},
+        #{pw}
+        )
+    </insert>
+    <delete id="delete_guanliyuan">
+        DELETE
+        FROM guanliyuan
+        WHERE yh_id = #{id}
+    </delete>
+    <update id="update_guanliyuan">
+        UPDATE guanliyuan
+        SET name=#{name},
+            pw=#{pw}
+        WHERE yh_id = #{yh_id};
+    </update>
+    <select id="query_guanliyuan" resultType="GuanLiYuan">
+        SELECT *
+        FROM guanliyuan
+        WHERE name = #{name};
+    </select>
+    <select id="query_guanliyuanID" resultType="GuanLiYuan">
+        SELECT *
+        FROM guanliyuan
+        WHERE yh_id = #{id};
+    </select>
+    <select id="queryAll_guanliyuan" resultType="GuanLiYuan">
+        SELECT *
+        FROM guanliyuan
+        WHERE yh_id!=1000;
+    </select>
+</mapper>

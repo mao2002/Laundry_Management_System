@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.washing.dao.YongHuDao">
+    <insert id="insert_yonghu">
+        INSERT IGNORE INTO yonghu(yh_phone,name,pw,sex,age,home,huiyuan)
+        VALUES (#{yh_phone},#{name},#{pw},#{sex},#{age},#{home},#{huiyuan});
+    </insert>
+    <delete id="delete_yonghu">
+        DELETE FROM yonghu
+        WHERE yh_id=#{id};
+    </delete>
+    <update id="delete_huiyuan">
+        UPDATE yonghu
+        SET huiyuan=0
+        WHERE yh_id=#{id};
+    </update>
+    <update id="update_yonghu">
+        UPDATE yonghu
+        SET yh_phone=#{yh_phone},name=#{name},pw=#{pw},sex=#{sex},age=#{age},home=#{home}
+        WHERE yh_id=#{yh_id};
+    </update>
+    <update id="insert_huiyuan">
+        UPDATE yonghu
+        SET huiyuan=1
+        WHERE yh_id=#{id};
+    </update>
+    <select id="query_yonghu" resultType="YongHu">
+        SELECT *
+        FROM yonghu
+        WHERE name=#{name};
+    </select>
+    <select id="query_huiyuan" resultType="YongHu">
+        SELECT *
+        FROM yonghu
+        WHERE name=#{name} AND huiyuan=1;
+    </select>
+    <select id="queryAll_yonghu" resultType="YongHu">
+        SELECT *
+        FROM yonghu;
+    </select>
+    <select id="queryAll_huiyuan" resultType="YongHu">
+        SELECT *
+        FROM yonghu
+        WHERE huiyuan=1;
+    </select>
+    <select id="queryAll_Nohuiyuan" resultType="YongHu">
+        SELECT *
+        FROM yonghu
+        WHERE huiyuan=0;
+    </select>
+</mapper>

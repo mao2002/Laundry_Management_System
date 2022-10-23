@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.washing.dao.DingDanDao">
+    <insert id="insert_dingdan">
+        INSERT IGNORE INTO dingdan(yh_id,xiangmu_id,pingpi,kuanshi,wancheng,shoufei)
+        VALUES(#{yh_id},#{xiangmu_id},#{pingpi},#{kuanshi},#{wancheng},#{shoufei});
+    </insert>
+    <select id="queryAll_dingdan" resultType="DingDan">
+        SELECT dingdan.dingdan_id,
+               dingdan.yh_id,
+               dingdan.xiangmu_id,
+               dingdan.pingpi,
+               dingdan.kuanshi,
+               dingdan.xiadan_time,
+               dingdan.wancheng,
+               r.name,
+               xiangmu.xiangmu_name,
+               dingdan.shoufei
+        FROM dingdan,
+                 (SELECT yh_id yh_id,name name
+                    FROM yonghu)r,
+             xiangmu
+        WHERE dingdan.yh_id=r.yh_id
+          AND dingdan.xiangmu_id=xiangmu.xiangmu_id
+    </select>
+    <delete id="delete_dingdan">
+        DELETE FROM dingdan
+        WHERE dingdan_id=#{id};
+    </delete>
+    <update id="update_dingdan">
+        UPDATE dingdan
+        SET pingpi=#{pingpi},kuanshi=#{kuanshi},wancheng=#{wancheng}
+        WHERE dingdan_id=#{dingdan_id};
+    </update>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.washing.dao.XiangMuDao">
+    <insert id="insert_xiangmu">
+        INSERT IGNORE INTO xiangmu(xiangmu_name,shoufei)
+        VALUES(#{xiangmu_name},#{shoufei})
+    </insert>
+    <delete id="delete_xiangmu">
+        DELETE FROM xiangmu
+        WHERE xiangmu_id=#{id}
+    </delete>
+    <update id="update_xiangmu">
+        UPDATE xiangmu
+        SET xiangmu_name=#{xiangmu_name},shoufei=#{shoufei}
+        WHERE xiangmu_id=#{xinagmu_id};
+    </update>
+    <select id="query_xiangmu" resultType="XiangMu">
+        SELECT *
+        FROM xiangmu
+        WHERE xiangmu_name=#{xiangmu_name}
+    </select>
+    <select id="queryAll_xiangmu" resultType="XiangMu">
+        SELECT *
+        FROM xiangmu
+    </select>
+</mapper>
